@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ajmera-assessment/static/css/main.ca277005.css",
+    "main.js": "/ajmera-assessment/static/js/main.e551e541.js",
+    "static/js/787.27679fd8.chunk.js": "/ajmera-assessment/static/js/787.27679fd8.chunk.js",
+    "index.html": "/ajmera-assessment/index.html",
+    "main.ca277005.css.map": "/ajmera-assessment/static/css/main.ca277005.css.map",
+    "main.e551e541.js.map": "/ajmera-assessment/static/js/main.e551e541.js.map",
+    "787.27679fd8.chunk.js.map": "/ajmera-assessment/static/js/787.27679fd8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ca277005.css",
+    "static/js/main.e551e541.js"
+  ]
+}
