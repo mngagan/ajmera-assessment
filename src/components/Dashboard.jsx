@@ -19,12 +19,12 @@ const Dashboard = ({ mode, setMode }) => {
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2} minHeight={160}>
                     <Grid xs display="flex" justifyContent="left" alignItems="center">
-                        <Typography variant='h3' >
+                        <Typography variant='h3' data-testid='dashboard-title'>
                             Dashboard
                         </Typography>
                     </Grid>
-                    <Grid xs display="flex" justifyContent="end" alignItems="end">
-                        {mode === 'light' ? <DarkModeIcon onClick={() => setMode('dark')} /> : <LightModeIcon onClick={() => setMode('light')} /> }
+                    <Grid xs display="flex" justifyContent="end" alignItems="end" data-testid={`theme-${mode}`}>
+                        {mode === 'light' ? <DarkModeIcon data-testid={'theme-button-dark'} onClick={() => setMode('dark')} /> : <LightModeIcon data-testid='theme-button-light' onClick={() => setMode('light')} />}
                     </Grid>
                     <UserTable />
                 </Grid>

@@ -1,7 +1,6 @@
 // import { actions } from '../redux/actions'
 
 export const addUser = ({ firstName, lastName, email }, enqueueSnackbar) => {
-  console.log('in add user fn', firstName, lastName, email)
   return async (dispatch) => {
     // dispatch(actions.fetchUsersLoading(true))
     try {

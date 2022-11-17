@@ -21,12 +21,15 @@ import { actions } from '../redux/actions'
 import { fetchUsers } from '../utils/fetchUsers'
 import Button from '@mui/material/Button'
 import AddUserDialog from './AddUserDialog'
+import Skeleton from '@mui/material/Skeleton'
 
 const UserTable = () => {
   const userData = useSelector(state => state.users[state.page] || [])
+  const usersLoadError = useSelector(state => state.usersLoadError)
   // const rowsPerPage = useSelector(state => state.rowsPerPage)
   const total_pages = useSelector(state => state.total_pages)
   const page = useSelector(state => state.page)
+  const usersLoading = useSelector(state => state.usersLoading)
   const [showDialog, setShowDialog] = React.useState(false)
 
   const handleButtonClick = (type) => {
@@ -48,36 +51,58 @@ const UserTable = () => {
   const showNext = total_pages !== page
   return <TableContainer component={Paper}>
     <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-      <TableHead>
+      {!usersLoadError && <TableHead>
         <TableRow>
           <TableCell></TableCell>
           <TableCell >Id</TableCell>
           <TableCell align="left">Name</TableCell>
           <TableCell align="left">Email</TableCell>
         </TableRow>
-      </TableHead>
+      </TableHead>}
       <TableBody>
-        {userData.map((row) => (
-          <TableRow key={row.email}>
-            <TableCell >
-              <Avatar alt="Remy Sharp" src={row.avatar} />
-            </TableCell>
-            <TableCell>
-              {row.id}
-            </TableCell>
-            <TableCell>
-              {`${row.first_name} ${row.last_name}`}
-            </TableCell>
-            <TableCell >
-              {row.email}
-            </TableCell>
-          </TableRow>
-        ))}
+        {!usersLoadError && (!usersLoading
+          ? userData.map((row) => (
+            <TableRow key={row.email}>
+              <TableCell align='center'>
+                <Avatar alt="Remy Sharp" src={row.avatar} />
+              </TableCell>
+              <TableCell>
+                {row.id}
+              </TableCell>
+              <TableCell>
+                {`${row.first_name} ${row.last_name}`}
+              </TableCell>
+              <TableCell >
+                {row.email}
+              </TableCell>
+            </TableRow>
+          ))
+          : [1, 2, 3, 4, 5, 6].map(key => (
+            <TableRow key={key}>
+              <TableCell >
+                <Skeleton animation="wave" />
+              </TableCell>
+              <TableCell>
+                <Skeleton animation="wave" />
+              </TableCell>
+              <TableCell>
+                <Skeleton animation="wave" />
+              </TableCell>
+              <TableCell >
+                <Skeleton animation="wave" />
+              </TableCell>
+            </TableRow>
+            )))}
+        {usersLoadError && <TableRow>
+          <TableCell colSpan={4} align='center'>
+            {usersLoadError}
+          </TableCell>
+        </TableRow>}
       </TableBody>
-      <TableFooter>
+      {!usersLoadError && <TableFooter>
         <TableRow>
           <TableCell colSpan={4} alight='right'>
-            <Stack
+            {page && <Stack
               direction="row"
               justifyContent="flex-end"
               alignItems="center"
@@ -90,12 +115,12 @@ const UserTable = () => {
               <Button variant="text" onClick={handleAddUser}>Add</Button>
               {!!showPrev && <KeyboardArrowLeft onClick={handleButtonClick.bind({}, 'prev')} />}
               {!!showNext && <KeyboardArrowRight onClick={handleButtonClick.bind({}, 'next')} />}
-            </Stack>
+            </Stack>}
           </TableCell>
         </TableRow>
-      </TableFooter>
+      </TableFooter>}
     </Table>
-    <AddUserDialog showDialog={showDialog} setShowDialog={setShowDialog}/>
+    <AddUserDialog showDialog={showDialog} setShowDialog={setShowDialog} />
   </TableContainer>
 }
 

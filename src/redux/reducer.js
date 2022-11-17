@@ -22,6 +22,9 @@ export const countReducer = function (state = initialState, action) {
     case actionTypes.UPDATE_PAGE : {
       return { ...state, page: payload }
     }
+    case actionTypes.FETCH_USER_ERROR : {
+      return { ...state, usersLoadError: payload }
+    }
     default:
       return state
   }

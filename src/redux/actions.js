@@ -18,5 +18,11 @@ export const actions = {
       type: actionTypes.UPDATE_PAGE,
       payload
     }
+  },
+  fetchUsersError (payload) {
+    return {
+      type: actionTypes.FETCH_USER_ERROR,
+      payload
+    }
   }
 }

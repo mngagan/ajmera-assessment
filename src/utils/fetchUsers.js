@@ -10,11 +10,15 @@ export const fetchUsers = (page = '') => {
       }
       let users = await fetch(url)
       users = await users.json()
-      console.log('fetching users', users)
-      dispatch(actions.updateUsers(users))
-      dispatch(actions.fetchUsersLoading(false))
+      setTimeout(() => {
+        dispatch(actions.updateUsers(users))
+        dispatch(actions.fetchUsersLoading(false))
+        dispatch(actions.fetchUsersError(null))
+      }, 500)
     } catch (e) {
+      console.log('in fetch users catch', e)
       dispatch(actions.fetchUsersLoading(false))
+      dispatch(actions.fetchUsersError('Failed fetching users. Please try again'))
     }
   }
 }
