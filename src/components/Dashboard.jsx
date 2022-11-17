@@ -11,7 +11,7 @@ import DarkModeIcon from '@mui/icons-material/DarkMode'
 
 const Dashboard = ({ mode, setMode }) => {
   React.useEffect(() => {
-    store.dispatch(fetchUsers())
+    !Object.values(store.getState().users).length && store.dispatch(fetchUsers())
   })
 
   return (
