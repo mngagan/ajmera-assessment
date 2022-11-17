@@ -2,6 +2,7 @@
   "name": "ajmera-assessment",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mngagan.github.io/ajmera-assessment/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -27,7 +28,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "e2e": "npx playwright test e2e"
+    "e2e": "npx playwright test e2e",
+    "predeploy": "npm run build",
+      "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -55,6 +58,7 @@
     "eslint-plugin-n": "^15.5.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.31.10",
+    "gh-pages": "^4.0.0",
     "playwright": "^1.28.0"
   }
 }
